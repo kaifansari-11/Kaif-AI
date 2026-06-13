@@ -4,7 +4,7 @@ A modern AI chat application powered by Puter.js with support for multiple AI mo
 
 ## Live Demo
 
-kaif-ai.netlify.app
+https://kaif-ai.netlify.app
 
 ---
 
