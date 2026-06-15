@@ -129,7 +129,7 @@ body {
 .session-delete:hover { color: var(--danger); background: var(--danger-dim); }
 
 .sidebar-footer {
-  padding: 12px;
+  padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--border);
 }
 
@@ -650,7 +650,7 @@ pre code {
   .sidebar {
     position: fixed;
     left: 0; top: 0;
-    height: 100vh;
+    height: 100dvh;
     transform: translateX(-100%);
   }
   .sidebar.open {
