@@ -556,6 +556,45 @@ function escapeHtml(text) {
     .replace(/"/g, "&quot;");
 }
 
+// ── Authentication ──
+async function updateAuthUI() {
+  const authSection = document.getElementById("authSection");
+  const isSignedIn = puter.auth.isSignedIn();
+
+  if (isSignedIn) {
+    const user = await puter.auth.getUser();
+    authSection.innerHTML = `
+      <div class="user-info">
+        <div class="msg-avatar">${user.username.charAt(0).toUpperCase()}</div>
+        <span>${user.username}</span>
+      </div>
+      <button class="auth-btn" onclick="handleSignOut()" title="Sign Out">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    `;
+  } else {
+    authSection.innerHTML = `
+      <button class="auth-btn primary" onclick="handleSignIn()">Sign in with Puter</button>
+    `;
+  }
+}
+
+async function handleSignIn() {
+  try {
+    await puter.auth.signIn();
+    updateAuthUI();
+    showToast("Signed in successfully.");
+  } catch (e) {
+    showToast("Sign in cancelled or failed.");
+  }
+}
+
+function handleSignOut() {
+  puter.auth.signOut();
+  updateAuthUI();
+  showToast("Signed out successfully.");
+}
+
 // ── Init ──
 function init() {
   loadSessions();
@@ -574,6 +613,7 @@ function init() {
   updateModelName();
   renderSessionList();
   renderChat();
+  updateAuthUI();
 }
 
 init();

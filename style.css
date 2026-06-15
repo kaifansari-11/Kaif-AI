@@ -675,3 +675,71 @@ pre code {
   .msg.user .msg-body { font-size: 14px; }
   .msg.ai .msg-body { font-size: 14px; }
 }
+
+/* ── Auth Section ── */
+.auth-section {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+  overflow: hidden;
+}
+
+.user-info .msg-avatar {
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+
+.user-info span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.auth-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.auth-btn:hover {
+  background: var(--bg4);
+  color: var(--text);
+}
+
+.auth-btn.primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 9px;
+  font-weight: 500;
+}
+
+.auth-btn.primary:hover {
+  background: var(--accent-hover);
+}
