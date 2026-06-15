@@ -24,9 +24,14 @@
   --radius-lg: 14px;
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'Consolas', 'Fira Code', monospace;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
 }
 
-html, body { height: 100%; }
+html, body { 
+  height: 100%; 
+  height: 100dvh; /* Add this to fix mobile height */
+}
 body {
   font-family: var(--font);
   background: var(--bg);
@@ -45,7 +50,8 @@ body {
 .sidebar {
   width: var(--sidebar-w);
   min-width: var(--sidebar-w);
-  height: 100vh;
+  height: 100%;     /* Fallback */
+  height: 100dvh;   /* Add this */
   background: var(--bg2);
   border-right: 1px solid var(--border);
   display: flex;
@@ -158,7 +164,8 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;     /* Fallback */
+  height: 100dvh;   /* Add this */
   overflow: hidden;
 }
 
@@ -352,6 +359,9 @@ body {
   width: 100%;
   font-size: 13px;
   margin: 10px 0;
+  display: block;      /* Add this */
+  overflow-x: auto;    /* Add this */
+  white-space: nowrap; /* Add this */
 }
 .msg.ai .msg-body th, .msg.ai .msg-body td {
   border: 1px solid var(--border2);
@@ -460,7 +470,7 @@ pre code {
 
 /* ── Input Area ── */
 .input-wrap {
-  padding: 12px 20px 16px;
+  padding: 12px 20px calc(16px + env(safe-area-inset-bottom)); /* Updated */
   border-top: 1px solid var(--border);
   max-width: 760px;
   width: 100%;
@@ -544,6 +554,8 @@ pre code {
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 8px;
+  max-height: 110px; /* Add this */
+  overflow-y: auto;  /* Add this */
 }
 
 .file-chip {
@@ -625,6 +637,14 @@ pre code {
   to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
+
+/* Hide sidebar toggle on desktop */
+@media (min-width: 769px) {
+  #sidebarToggle {
+    display: none;
+  }
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .sidebar {
@@ -641,7 +661,9 @@ pre code {
   }
   .main { width: 100%; }
   .msg-wrap { padding: 0 12px; }
-  .input-wrap { padding: 10px 12px 14px; }
+  .input-wrap { 
+    padding: 10px 12px calc(14px + env(safe-area-inset-bottom)); /* Updated */
+  }
   .welcome { padding: 40px 20px 30px; }
   .scroll-btn { right: 14px; bottom: 100px; }
   pre code { font-size: 12px; }
