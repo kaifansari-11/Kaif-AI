@@ -167,11 +167,8 @@ function buildAiBubble(text) {
 
 function getModelLabel(val) {
   const map = {
-    "claude-sonnet-4-6": "Claude Sonnet",
-    "claude-opus-4-8": "Claude Opus",
-    "gpt-4o": "GPT-4o",
-    "gpt-4o-mini": "GPT-4o mini",
-    "gemini-1-5-flash": "Gemini Flash"
+    "claude-3-5-sonnet": "Claude Sonnet",
+    "claude-3-opus": "Claude Opus",
   };
   return map[val] || val;
 }
